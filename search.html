@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SubHunt</title>
+    <style>
+        body {
+            font-family: "Old Baskerville", serif;
+            margin: 0;
+            padding: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #f3c7a0, #b36d12);
+        }
+        h1 {
+            color: rgba(0, 0, 0, 0.8);
+            margin: 20px 0;
+            font-size: 66px;
+        }
+        .search-container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        .search-input {
+            font-size: 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            width: 60%;
+            max-width: 1000px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #f2f2f2;
+            display: inline-block;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .search-button,
+        .clear-button {
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 16px;
+            padding: 12px 24px;
+            margin-right: 10px;
+        }
+        .search-button {
+            background-color: #038b2a;
+            color: white;
+        }
+        .clear-button {
+            background-color: white;
+            color: black;
+        }
+        .search-results {
+            margin-top: 20px;
+        }
+        .result {
+            margin-bottom: 20px;
+            border: 1px solid to bottom right, #f3c7a0, #b36d12;
+            padding: 10px;
+        }
+        .result h3 {
+            margin-top: 0;
+            color: blue;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+        .result h3:hover {
+            color: darkblue;
+        }
+        .result p {
+            margin-bottom: 0;
+        }
+        .result .chunk {
+            margin-top: 5px;
+            font-style: italic;
+            color: #333;
+        }
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+        <h1>SubHunt</h1>
+        <div class="search-container">
+        <form id="search-form" method="post">
+            <input type="text" name="query" class="search-input" size="90" placeholder="Search subtitles..." value="{{ search_query }}">
+            <div class="button-container">
+                <button type="submit" class="search-button">Search</button>
+                <button type="button" class="clear-button" onclick="clearSearch()">Clear</button>
+            </div>
+        </form>
+    </div>
+    {% if subtitles %}
+    <div class="search-results">
+        {% for subtitle, chunk in subtitles %}
+        <div class="result">
+            <h3><a href="/content?subtitle={{ subtitle }}">{{ subtitle }}</a></h3>
+            <p>{{ chunk | truncate(300) }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <script>
+        function clearSearch() {
+            document.querySelector('.search-input').value = '';
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

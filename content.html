@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SubHunt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to bottom right, #f3c7a0, #b36d12);
+        }
+        h1 {
+            text-align: center;
+        }
+        .content {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ subtitle }}</h1>
+    <div class="content">
+        <!--<p>{{ content }}</p>-->
+        {% for sentence in content.split('.') %}
+            <p>{{ sentence }}</p>
+        {% endfor %}
+    </div>
+    <a href="/" class="back-button">Back to Search</a>
+</body>
+</html>
